@@ -392,6 +392,26 @@ button{
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  let data = {
+    name: document.getElementById("name").value,
+    number: document.getElementById("number").value,
+    email: document.getElementById("email").value,
+    message: document.getElementById("message").value
+  };
+
+  // Send to Google Sheet
+  fetch("URL: https://script.google.com/macros/s/AKfycbyBB-QBa2DS4St3BCl26_tpKbdVTVwK8bx2Gegzhox_bT4yW01_OW9Fui-RVT_Jdvyahw/exec", {
+    method: "POST",
+    body: JSON.stringify(data)
+  });
+
+  alert("✅ Data saved + Email sent!");
+});
+</script>
 
 <script>
 window.onload = function() {
