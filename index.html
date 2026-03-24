@@ -403,13 +403,18 @@ document.getElementById("contactForm").addEventListener("submit", function(e){
     message: document.getElementById("message").value
   };
 
-  // Send to Google Sheet
-  fetch("URL: https://script.google.com/macros/s/AKfycbyBB-QBa2DS4St3BCl26_tpKbdVTVwK8bx2Gegzhox_bT4yW01_OW9Fui-RVT_Jdvyahw/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbyBB-QBa2DS4St3BCl26_tpKbdVTVwK8bx2Gegzhox_bT4yW01_OW9Fui-RVT_Jdvyahw/exec", {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify(data)
-  });
+  })
+  .then(res => res.text())
+  .then(res => console.log("Sheet:", res))
+  .catch(err => console.log(err));
 
-  alert("✅ Data saved + Email sent!");
+  alert("✅ Data sent!");
 });
 </script>
 
